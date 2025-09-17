@@ -1,0 +1,13 @@
+.caret {
+display: inline-block;
+width: 1px;
+background: currentColor;
+animation: blink 1s steps(1) infinite;
+vertical-align: bottom;
+margin-left: -1px; /* sit exactly after char */
+}
+@keyframes blink { 50% { opacity: 0 } }
+/* word / char states */
+.char-correct { color: #10b981; } /* emerald-500 */
+.char-wrong { color: #ef4444; } /* red-500 */
+.word-current { background: rgba(99,102,241,0.08); border-radius: 6px; padding: 2px 4px; }
