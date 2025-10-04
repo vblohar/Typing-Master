@@ -11,26 +11,34 @@
     </header>
 
     <!-- Paragraph card -->
-    <section class="bg-white shadow-sm rounded-2xl p-6 border border-gray-100">
+    <section class="bg-white shadow-sm rounded-2xl p-6 border box-border border-gray-100">
         <div class="flex items-start gap-6">
             <!-- paragraph area -->
             <div class="flex-1">
-                <label class="block text-sm font-medium text-gray-600 mb-2">Paragraph</label>
-                <label class="block text-sm font-medium text-gray-600 mb-2">Paragraph</label>
+                <div class="flex gap-3 justify-between p-1 box-border">
+                    <label class="block text-md font-medium text-gray-600 p-3">{{textType}}</label>
+                    <div class="p-2">
+                        <!-- <label for="">select time</label> -->
+                        <select *ngIf="!countdownDisplay" class="p-2" [(ngModel)]="timeForTyping" id="timeForTyping" (change)="changeTime()">
+                            <option *ngFor="let time of typingTime" [value]="time.time" >{{time.time}} minutes</option>
+                        
+                        </select>
+                        <div class="p-1" *ngIf="countdownDisplay" >{{countdownDisplay}}</div>
+                    </div>
+                    
+                </div>
+
                 <div id="paragraphBox" #scrollContainer
                     class="bg-gray-50 p-6 rounded-xl border border-dashed border-gray-200 min-h-[140px] overflow-auto max-h-[250px] text-2xl leading-8 text-gray-800">
                     <!-- paragraph content is rendered as spans for each char/word -->
                     <p id="textDisplay" class="break-words">{{paragraph}}</p>
                     <!-- subtle overlay for left gradient to hint scroll -->
-                    <div
-                        class="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-white/80 to-transparent">
-                    </div>
                 </div>
                 <div class="mt-4 flex items-center gap-3">
                     <button id="startBtn"
-                        class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 cursor-pointer">Start</button>
+                        class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-sm hover:bg-indigo-700 cursor-pointer" (click)="startCountdown()">Start</button>
                     <button id="resetBtn"
-                        class="px-3 py-2 border border-gray-200 rounded-lg text-sm cursor-pointer">Reset</button>
+                        class="px-3 py-2 border border-gray-200 rounded-lg text-sm cursor-pointer" (click)="reset()">Reset</button>
 
                     <div class="ml-auto text-sm text-gray-500">Press <kbd
                             class="px-2 py-0.5 border rounded bg-gray-100">Space</kbd> to move words</div>
