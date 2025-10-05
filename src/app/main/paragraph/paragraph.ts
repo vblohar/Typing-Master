@@ -33,6 +33,7 @@ export class Paragraph {
     const seconds = this.remainingTime % 60;
     const minutes = Math.floor(this.remainingTime / 60);
     this.countdownDisplay = `${this.pad(minutes)}:${this.pad(seconds)}`;
+    console.log(this.countdownDisplay);
   }
 
   pad(num: number) {

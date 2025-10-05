@@ -7,6 +7,10 @@
                 class="px-3 py-1 rounded-md border border-gray-200 bg-white text-sm">
                 <option *ngFor="let type of difficulty">{{type.type}}</option>
             </select>
+             <select class="px-3 py-1 rounded-md border border-gray-200 bg-white text-sm" [(ngModel)]="timeForTyping" id="timeForTyping" (change)="changeTime()">
+                            <option *ngFor="let time of typingTime" [value]="time.time" >{{time.time}} minutes</option>
+                        
+                        </select>
         </div>
     </header>
 
@@ -19,11 +23,8 @@
                     <label class="block text-md font-medium text-gray-600 p-3">{{textType}}</label>
                     <div class="p-2">
                         <!-- <label for="">select time</label> -->
-                        <select *ngIf="!countdownDisplay" class="p-2" [(ngModel)]="timeForTyping" id="timeForTyping" (change)="changeTime()">
-                            <option *ngFor="let time of typingTime" [value]="time.time" >{{time.time}} minutes</option>
-                        
-                        </select>
-                        <div class="p-1" *ngIf="countdownDisplay" >{{countdownDisplay}}</div>
+                       
+                        <div class="p-2 font-bold text-amber-500 rounded-md border border-gray-200 bg-white text-3xl">{{countdownDisplay ? countdownDisplay : '00:00'}}</div>
                     </div>
                     
                 </div>
